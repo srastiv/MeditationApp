@@ -16,7 +16,8 @@ import 'widgets/check_box.dart';
 
 class SignUp extends StatelessWidget {
   SignUp({Key? key}) : super(key: key);
-  final TextEditingController usernameController = TextEditingController();
+
+  final TextEditingController phoneNoController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
@@ -93,13 +94,29 @@ class SignUp extends StatelessWidget {
                         child: Column(
                           children: [
                             const SizedBox(height: 40),
-                            kOrLogInWithEmail,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                kOrLogInWithEmail,
+                                ElevatedButton(
+                                  onPressed: () {
+                                    context.push(
+                                        "/otp/${phoneNoController.text}",
+                                        extra: phoneNoController.text);
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      primary: kPurple, elevation: 0),
+                                  child: const Text("Send OTP"),
+                                ),
+                              ],
+                            ),
                             const SizedBox(height: 40),
                             CommonTextFormFieldWidget(
+                              keyboardType: TextInputType.number,
                               obscuretext: false,
-                              text: "Username",
-                              controller: usernameController,
-                              suffixicon: (usernameController.text.isEmpty)
+                              text: "Phone Number",
+                              controller: phoneNoController,
+                              suffixicon: (phoneNoController.text.isEmpty)
                                   ? const SizedBox()
                                   : SizedBox(
                                       height: 9.15,
@@ -125,10 +142,10 @@ class SignUp extends StatelessWidget {
                               onchanged: (value) {
                                 BlocProvider.of<LoginValidationBloc>(context)
                                     .add(
-                                  LoginOnTextChangedEvent(
-                                      email: emailController.text,
-                                      password: passwordController.text,
-                                      isTickedOrNot: false),
+                                  LoginCredentialsChangedEvent(
+                                    email: emailController.text,
+                                    password: passwordController.text,
+                                  ),
                                 );
                               },
                             ),
@@ -154,10 +171,10 @@ class SignUp extends StatelessWidget {
                               onchanged: (value) {
                                 BlocProvider.of<LoginValidationBloc>(context)
                                     .add(
-                                  LoginOnTextChangedEvent(
-                                      password: passwordController.text,
-                                      email: emailController.text,
-                                      isTickedOrNot: false),
+                                  LoginCredentialsChangedEvent(
+                                    password: passwordController.text,
+                                    email: emailController.text,
+                                  ),
                                 );
                               },
                             ),
@@ -178,7 +195,6 @@ class SignUp extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 kPrivacyPolicyRichText,
-
                                 const CustomCheckBoxWidget(),
                                 // BlocBuilder<LoginValidationBloc,
                                 //     LoginValidationState>(
@@ -199,20 +215,19 @@ class SignUp extends StatelessWidget {
                                 //     );
                                 //   },
                                 // ),
-
-                                // BlocBuilder<LoginValidationBloc,
-                                //     LoginValidationState>(
-                                //   builder: (context, state) {
-                                //     if (state is LoginErrorState) {
-                                //       return Text(
-                                //         state.checkboxErrorMessage,
-                                //         style: kErrorStyle,
-                                //       );
-                                //     }
-                                //     return const SizedBox();
-                                //   },
-                                // ),
                               ],
+                            ),
+                            BlocBuilder<LoginValidationBloc,
+                                LoginValidationState>(
+                              builder: (context, state) {
+                                if (state is LoginErrorState) {
+                                  return Text(""
+                                      // state.checkboxErrorMessage,
+                                      // style: kErrorStyle,
+                                      );
+                                }
+                                return const SizedBox();
+                              },
                             ),
                             const SizedBox(height: 32),
                           ],

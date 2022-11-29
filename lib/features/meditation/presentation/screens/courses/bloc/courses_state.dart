@@ -10,7 +10,7 @@ abstract class CoursesState extends Equatable {
 class CoursesInitialState extends CoursesState {}
 
 class CoursesLoadedState extends CoursesState {
- final List<CoursesEntity> coursesList;
+ final List<CoursesModel> coursesList;
   const CoursesLoadedState({required this.coursesList});
 }
 

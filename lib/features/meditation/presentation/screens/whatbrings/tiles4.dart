@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
-import 'bloc/what_brings_bloc.dart';
+import '../../../data/data_sources/local_data_sources/meditation_local_data_sources.dart';
+import '../../constants/texts.dart';
+import '../../constants/textstyle.dart';
+import 'what_brings_you_bloc/what_brings_you_bloc.dart';
 
 class ContainerOf4ContainersWidget extends StatelessWidget {
   const ContainerOf4ContainersWidget({Key? key}) : super(key: key);
@@ -11,9 +15,9 @@ class ContainerOf4ContainersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
-      child: BlocBuilder<WhatBringsBloc, WhatBringsState>(
+      child: BlocBuilder<WhatBringsYouBloc, WhatBringsYouState>(
         builder: (context, state) {
-          if (state is WhatBringsDataLoadedState) {
+          if (state is WhatBringsYouLoadedState) {
             return ListView.builder(
               padding: const EdgeInsets.all(0),
               itemCount: 5,
@@ -33,20 +37,23 @@ class ContainerOf4ContainersWidget extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * .41,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: state
-                                  .whatBringsYouToSilentMoonList[index].color,
+                              color: whatBringsYouToSilentMoonList[index].color,
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                state
-                                    .whatBringsYouToSilentMoonList[index].image,
+                                SvgPicture.asset(
+                                  state.whatBringsYouList[index]
+                                      .whatBringsSvGpath,
+                                ),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       left: 4, bottom: 8.0),
-                                  child: state
-                                      .whatBringsYouToSilentMoonList[index]
-                                      .text,
+                                  child: Text(
+                                    state.whatBringsYouList[index]
+                                        .whatBringsTitle,
+                                    style: kw700size18colBlack,
+                                  ),
                                 ),
                               ],
                             ),
@@ -57,8 +64,7 @@ class ContainerOf4ContainersWidget extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * .41,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: state
-                                  .whatBringsYouToSilentMoonList[index + 2]
+                              color: whatBringsYouToSilentMoonList[index + 2]
                                   .color,
                             ),
                             child: Column(
@@ -68,17 +74,18 @@ class ContainerOf4ContainersWidget extends StatelessWidget {
                                 Stack(
                                   alignment: Alignment.bottomLeft,
                                   children: [
-                                    state
-                                        .whatBringsYouToSilentMoonList[
-                                            index + 2]
-                                        .image,
+                                    SvgPicture.asset(
+                                      state.whatBringsYouList[index + 2]
+                                          .whatBringsSvGpath,
+                                    ),
                                     Padding(
                                       padding: const EdgeInsets.only(
                                           left: 8.0, bottom: 8),
-                                      child: state
-                                          .whatBringsYouToSilentMoonList[
-                                              index + 2]
-                                          .text,
+                                      child: Text(
+                                        state.whatBringsYouList[index + 2]
+                                            .whatBringsTitle,
+                                        style: kw700size18colBlack,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -99,8 +106,7 @@ class ContainerOf4ContainersWidget extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * .41,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: state
-                                  .whatBringsYouToSilentMoonList[index + 1]
+                              color: whatBringsYouToSilentMoonList[index + 1]
                                   .color,
                             ),
                             child: Column(
@@ -111,20 +117,20 @@ class ContainerOf4ContainersWidget extends StatelessWidget {
                                   //clipBehavior: Clip.none,
                                   alignment: Alignment.bottomLeft,
                                   children: [
-                                    state
-                                        .whatBringsYouToSilentMoonList[
-                                            index + 1]
-                                        .image,
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        bottom: 8.0,
-                                        left: 8,
-                                      ),
-                                      child: state
-                                          .whatBringsYouToSilentMoonList[
-                                              index + 1]
-                                          .text,
+                                    SvgPicture.asset(
+                                      state.whatBringsYouList[index + 1]
+                                          .whatBringsSvGpath,
                                     ),
+                                    Padding(
+                                        padding: const EdgeInsets.only(
+                                          bottom: 8.0,
+                                          left: 8,
+                                        ),
+                                        child: Text(
+                                          state.whatBringsYouList[index + 1]
+                                              .whatBringsTitle,
+                                          style: kw700size18colBlack,
+                                        )),
                                   ],
                                 ),
                               ],
@@ -136,21 +142,24 @@ class ContainerOf4ContainersWidget extends StatelessWidget {
                             width: MediaQuery.of(context).size.width * .41,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              color: state
-                                  .whatBringsYouToSilentMoonList[index + 3]
+                              color: whatBringsYouToSilentMoonList[index + 3]
                                   .color,
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                state.whatBringsYouToSilentMoonList[index + 3]
-                                    .image,
+                                SvgPicture.asset(
+                                  state.whatBringsYouList[index + 3]
+                                      .whatBringsSvGpath,
+                                ),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       bottom: 8.0, left: 3, right: 3),
-                                  child: state
-                                      .whatBringsYouToSilentMoonList[index + 3]
-                                      .text,
+                                  child: Text(
+                                    state.whatBringsYouList[index + 3]
+                                        .whatBringsTitle,
+                                    style: kw700size18colBlack,
+                                  ),
                                 ),
                               ],
                             ),
@@ -164,7 +173,7 @@ class ContainerOf4ContainersWidget extends StatelessWidget {
             );
           }
 
-          return const Text("not loaded state");
+          return kNeitherState;
         },
       ),
     );

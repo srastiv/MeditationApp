@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../data/models/courses_model.dart';
 import '../../common_widgets/row_icon_button_widget.dart';
 import '../../constants/colors.dart';
 import '../../constants/texts.dart';
+import '../../constants/textstyle.dart';
 import 'tabbar/tabbar.dart';
 
 class UserScreen extends StatelessWidget {
-  const UserScreen({Key? key}) : super(key: key);
+  const UserScreen({
+    Key? key,
+    required this.course,
+  }) : super(key: key);
+
+  final CoursesModel course;
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +41,14 @@ class UserScreen extends StatelessWidget {
                       onTap: () {
                         context.go("/bottomnav");
                       },
-                      color:const  Color.fromARGB(99, 3, 22, 76),
-                      widget:const  Icon(
+                      color: const Color.fromARGB(99, 3, 22, 76),
+                      widget: const Icon(
                         Icons.arrow_back,
                         color: kBlack,
                       ),
                     ),
                   ),
                 ),
-          
               ],
             ),
             Container(
@@ -54,11 +60,20 @@ class UserScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 150),
-                  kHappyMorning,
+                  Text(
+                    course.courseTitle,
+                    style: kw700size34colBlack,
+                  ),
                   const SizedBox(height: 15),
-                  kCourse,
+                  Text(
+                    course.courseSubtitle,
+                    style: kw400size14colTextGrey,
+                  ),
                   const SizedBox(height: 20),
-                  kEaseTheMind,
+                  Text(
+                    course.courseDescription,
+                    style: kw300size16colTextGrey,
+                  ),
                   const SizedBox(height: 30),
                   Row(
                     children: [

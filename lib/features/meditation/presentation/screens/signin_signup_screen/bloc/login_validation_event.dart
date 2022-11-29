@@ -7,18 +7,19 @@ abstract class LoginValidationEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class LoginOnTextChangedEvent extends LoginValidationEvent {
+class LoginCredentialsChangedEvent extends LoginValidationEvent {
   final String email;
   final String password;
-   bool isTickedOrNot;
-   LoginOnTextChangedEvent({
+ // final bool isTickedOrNot;
+
+  const LoginCredentialsChangedEvent({
     required this.email,
     required this.password,
-   required this.isTickedOrNot
+    // required this.isTickedOrNot,
   });
 }
 
-class CheckBoxTickEvent extends LoginValidationEvent {
-   bool isTickedOrNot;
-   CheckBoxTickEvent({required this.isTickedOrNot});
-}
+// class CheckBoxTickEvent extends LoginValidationEvent {
+//   final bool isTickedOrNot;
+//   const CheckBoxTickEvent({required this.isTickedOrNot});
+// }

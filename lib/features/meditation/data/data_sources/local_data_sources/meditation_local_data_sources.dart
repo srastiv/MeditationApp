@@ -1,19 +1,11 @@
-import 'package:dartz/dartz.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:meditation/core/errors/failures.dart';
+
+import 'package:flutter_svg/svg.dart';
 
 import '../../../domain/entities/what_brings_entity.dart';
 import '../../../presentation/constants/colors.dart';
 import '../../../presentation/constants/texts.dart';
 
-abstract class WhatBringsLocalDataSource {
-  Either<Failure, List<WhatBringsEntity>> getWhatBrings();
-}
-
-class WhatBringsLocalDataSourceImpl implements WhatBringsLocalDataSource {
-  @override
-  Either<Failure, List<WhatBringsEntity>> getWhatBrings() {
-    List<WhatBringsEntity> whatBringsYouToSilentMoonList = [
+List<WhatBringsEntity> whatBringsYouToSilentMoonList = [
       WhatBringsEntity(
         text: kReduceStressReason,
         image: SvgPicture.asset("assets/vectors/reduceStress.svg"),
@@ -55,12 +47,3 @@ class WhatBringsLocalDataSourceImpl implements WhatBringsLocalDataSource {
         color: kPink,
       ),
     ];
-    if (2 == 2) {
-      return Right(whatBringsYouToSilentMoonList);
-    } else {
-      return const Left(
-        Failure(),
-      );
-    }
-  }
-}

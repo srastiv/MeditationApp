@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:meditation/core/errors/failures.dart';
-import 'package:meditation/features/meditation/domain/entities/courses_entity.dart';
+
+import '../../../../core/errors/failures.dart';
+import '../../data/models/courses_model.dart';
 
 abstract class CoursesRepository{
-  Future<Either<Failure, List<CoursesEntity>>> getCourses();
+  Future<Either<Failure, List<CoursesModel>>> getCourses();
 }

@@ -268,8 +268,9 @@ const kHappyMorning = Text(
 );
 
 const kEaseTheMind = Text(
-    "Ease the mind into a restful night’s sleep  with these deep, amblent tones.",
-    style: kw300size16colTextGrey);
+  "Ease the mind into a restful night’s sleep  with these deep, amblent tones.",
+  style: kw300size16colTextGrey,
+);
 
 const kCourse = Text(
   "COURSE",
@@ -368,4 +369,24 @@ const kRelated = Text(
 const kPlay = Text(
   "PLAY",
   style: kw400size14colPureWhite,
+);
+
+const kBulletSymbol = Text(
+  " • ",
+  style: kw700size15colTextGrey,
+);
+
+const kNeitherState = Text(
+  "Neither loaded, initial or error state",
+  style: kErrorStyle,
+);
+
+const kVerificationCode = Text(
+  "Verification Code",
+  style: kw700size34,
+);
+
+const kHasBeenSent = Text(
+  "The verification code has been sent to the phone number: ",
+  style: kw400size14colTextGrey,
 );

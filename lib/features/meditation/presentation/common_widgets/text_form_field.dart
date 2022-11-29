@@ -5,8 +5,10 @@ import '../constants/textstyle.dart';
 
 class CommonTextFormFieldWidget extends StatelessWidget {
   final int? numberOfLetters;
-  final String text;
   final Widget? suffixicon;
+  final TextInputType? keyboardType;
+  final String text;
+
   final bool obscuretext;
   final TextEditingController controller;
   final void Function(String)? onchanged;
@@ -15,6 +17,7 @@ class CommonTextFormFieldWidget extends StatelessWidget {
     Key? key,
     required this.text,
     this.onchanged,
+    this.keyboardType,
     required this.controller,
     this.suffixicon,
     required this.obscuretext,
@@ -25,7 +28,7 @@ class CommonTextFormFieldWidget extends StatelessWidget {
     return SizedBox(
       height: 63,
       child: TextFormField(
-        keyboardType: TextInputType.multiline,
+        keyboardType: keyboardType,
         controller: controller,
         onChanged: onchanged,
         obscureText: obscuretext,

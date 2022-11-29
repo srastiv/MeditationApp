@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:meditation/features/meditation/data/models/courses_model.dart';
+import 'package:meditation/features/meditation/presentation/screens/signin_signup_screen/otp_screen/otp_screen.dart';
 
 import '../screens/courses/courses_screen.dart';
 import '../screens/courses/widgets/bottom_nav.dart';
@@ -65,12 +67,6 @@ class AppRoutes {
         },
       ),
       GoRoute(
-        path: "/home",
-        builder: (BuildContext context, GoRouterState state) {
-          return CoursesScreen();
-        },
-      ),
-      GoRoute(
         path: "/music",
         builder: (BuildContext context, GoRouterState state) {
           return const MusicScreen();
@@ -95,15 +91,27 @@ class AppRoutes {
         },
       ),
       GoRoute(
-        path: "/user",
+        path: "/home",
         builder: (BuildContext context, GoRouterState state) {
-          return const UserScreen();
+          return CoursesScreen();
         },
       ),
       GoRoute(
-        path: "/bottomnav",
+        path: "/user/:course",
         builder: (BuildContext context, GoRouterState state) {
-          return const CustomBottomNavigationBarWidget();
+          return UserScreen(course: state.extra as CoursesModel);
+        },
+      ),
+      GoRoute(
+        path: "/island/:song",
+        builder: (BuildContext context, GoRouterState state) {
+          return NightIslandScreen(song: state.extra as String);
+        },
+      ),
+      GoRoute(
+        path: "/otp/:phoneNo",
+        builder: (BuildContext context, GoRouterState state) {
+          return OTPScreen(phoneNo: state.extra as String);
         },
       ),
       GoRoute(
@@ -113,9 +121,9 @@ class AppRoutes {
         },
       ),
       GoRoute(
-        path: "/island/:song",
+        path: "/bottomnav",
         builder: (BuildContext context, GoRouterState state) {
-          return NightIslandScreen(song: state.extra as String);
+          return const CustomBottomNavigationBarWidget();
         },
       ),
       GoRoute(

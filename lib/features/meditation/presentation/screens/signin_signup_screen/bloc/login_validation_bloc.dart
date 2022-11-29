@@ -8,49 +8,47 @@ part 'login_validation_state.dart';
 class LoginValidationBloc
     extends Bloc<LoginValidationEvent, LoginValidationState> {
   LoginValidationBloc() : super(LoginValidationInitial()) {
-    on<LoginOnTextChangedEvent>((event, emit) {
-      event.isTickedOrNot = true;
-
+    on<LoginCredentialsChangedEvent>((event, emit) {
       String emailErrorMessage = "Please enter a valid email address";
-      String passwordErroressage = "Please enter a valid password";
+      String passwordErrorMessage = "Please enter a valid password";
       var emailValidation =
           (isEmail(event.email) == false || event.email.isEmpty);
       var passwordValidation =
-          validatePassword(event.password) == false || event.password.isEmpty;
+          (validatePassword(event.password) == false || event.password.isEmpty);
 
       if (passwordValidation) {
         emit(LoginErrorState(
-          passwordErrorMessage: passwordErroressage,
+          passwordErrorMessage: passwordErrorMessage,
           emailErrorMessage: emailValidation ? emailErrorMessage : "",
-          checkboxErrorMessage: "",
+        // checkboxErrorMessage: "",
         ));
         if (event.password.length < 8) {
           emit(LoginErrorState(
             passwordErrorMessage:
                 "Password should be atleast 8 characters long",
             emailErrorMessage: emailValidation ? emailErrorMessage : "",
-            checkboxErrorMessage: "",
+           // checkboxErrorMessage: "",
           ));
         }
         if (!event.password.contains(RegExp(r'[A-Z]'))) {
           emit(LoginErrorState(
             passwordErrorMessage: "Password should contain atleast 1 uppercase",
             emailErrorMessage: emailValidation ? emailErrorMessage : "",
-            checkboxErrorMessage: "",
+            //checkboxErrorMessage: "",
           ));
         }
         if (!event.password.contains(RegExp(r'[a-z]'))) {
           emit(LoginErrorState(
             passwordErrorMessage: "Password should contain atleast 1 lowercase",
             emailErrorMessage: emailValidation ? emailErrorMessage : "",
-            checkboxErrorMessage: "",
+           // checkboxErrorMessage: "",
           ));
         }
         if (!event.password.contains(RegExp(r'[0-9]'))) {
           emit(LoginErrorState(
             passwordErrorMessage: "Password should contain atleast 1 digit",
             emailErrorMessage: emailValidation ? emailErrorMessage : "",
-            checkboxErrorMessage: "",
+           // checkboxErrorMessage: "",
           ));
         }
         if (!event.password.contains(RegExp(r'[!@#\$&*~]'))) {
@@ -58,30 +56,17 @@ class LoginValidationBloc
             passwordErrorMessage:
                 "Password should contain atleast 1 special character",
             emailErrorMessage: emailValidation ? emailErrorMessage : "",
-            checkboxErrorMessage: "",
+           // checkboxErrorMessage: "",
           ));
         }
-      } 
-      if (emailValidation) {
+      } else if (emailValidation) {
         emit(LoginErrorState(
           emailErrorMessage: emailErrorMessage,
-          passwordErrorMessage: passwordValidation ? passwordErroressage : "",
-          checkboxErrorMessage: "",
+          passwordErrorMessage: passwordValidation ? passwordErrorMessage : "",
+          //checkboxErrorMessage: "",
         ));
-      } if (event.isTickedOrNot == false) {
-        emit(
-          const LoginErrorState(
-            emailErrorMessage: "",
-            passwordErrorMessage: "",
-            checkboxErrorMessage:
-                "Please tick the checkbox to agree to Terms & Conditions",
-          ),
-        );
-      }
-       else {
-        emit(
-          LoginValidState(isTickedOrNot: true),
-        );
+      } else {
+        emit(LoginValidState());
       }
     });
   }

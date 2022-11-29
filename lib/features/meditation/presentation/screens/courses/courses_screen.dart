@@ -3,18 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:meditation/features/meditation/presentation/screens/courses/bloc/courses_bloc.dart';
 
 import '../../../../../dependency_injection.dart';
 import '../../common_widgets/silent_logo_moon.dart';
 import '../../constants/colors.dart';
 import '../../constants/texts.dart';
 import '../../constants/textstyle.dart';
+import 'bloc/courses_bloc.dart';
 
 List<SvgPicture> homepageSVGList = [
   SvgPicture.asset("assets/vectors/greenFocusMeditate.svg"),
   SvgPicture.asset("assets/vectors/yellowHappinessMeditate.svg"),
-  SvgPicture.asset("assets/vectors/greenFocusMeditate.svg"),
 ];
 
 class CoursesScreen extends StatelessWidget {
@@ -35,13 +34,7 @@ class CoursesScreen extends StatelessWidget {
                       .add(FetchCoursesEvent());
 
                   return const Center(
-                    child: Text(
-                      "initial state",
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    child: Text("initial state", style: kErrorStyle),
                   );
                 } else if (state is CoursesLoadedState) {
                   return Container(
@@ -75,7 +68,10 @@ class CoursesScreen extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
-                                        k310mins,
+                                        Text(
+                                          state.coursesList[0].courseDuration,
+                                          style: kw400size11colWhite,
+                                        ),
                                         const SizedBox(
                                           width: 26,
                                         ),
@@ -119,23 +115,53 @@ class CoursesScreen extends StatelessWidget {
                             shrinkWrap: true,
                             padding: const EdgeInsets.all(0),
                             scrollDirection: Axis.horizontal,
-                            itemCount: homepageSVGList.length,
+                            itemCount: state.coursesList.length,
                             itemBuilder: ((context, index) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: kLightGreen,
+                              return GestureDetector(
+                                onTap: () {
+                                  var course = state.coursesList[index];
+                                  context.push(
+                                    "/user/$course",
+                                    extra: course,
+                                  );
+                                },
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: kLightGreen,
+                                      ),
+                                      margin: const EdgeInsets.only(
+                                          right: 10, bottom: 10),
+                                      child: index % 2 == 0
+                                          ? homepageSVGList[0]
+                                          : homepageSVGList[1],
                                     ),
-                                    margin: const EdgeInsets.only(
-                                        right: 10, bottom: 10),
-                                    child: homepageSVGList[index],
-                                  ),
-                                  const Expanded(child: kFocus),
-                                  const Expanded(child: kMeditation),
-                                ],
+                                    Expanded(
+                                        child: Text(
+                                      state.coursesList[index].courseTitle,
+                                      style: kw700size18colBlack,
+                                    )),
+                                    Expanded(
+                                        child: Row(
+                                      children: [
+                                        Text(
+                                          state.coursesList[index]
+                                              .courseSubtitle,
+                                          style: kw400size11colTextGrey,
+                                        ),
+                                        kBulletSymbol,
+                                        Text(
+                                          state.coursesList[index]
+                                              .courseDuration,
+                                          style: kw400size11colTextGrey,
+                                        ),
+                                      ],
+                                    )),
+                                  ],
+                                ),
                               );
                             }),
                           ),
@@ -148,21 +174,12 @@ class CoursesScreen extends StatelessWidget {
                   return Center(
                     child: Text(
                       state.message,
-                      style: const TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      style: kErrorStyle,
                     ),
                   );
                 } else {
                   return const Center(
-                    child: Text(
-                      "Neither loaded, initial or error state",
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    child: kNeitherState,
                   );
                 }
               },

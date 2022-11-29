@@ -219,3 +219,10 @@ const kw400size24 = TextStyle(
   fontWeight: FontWeight.w400,
   fontSize: 24,
 );
+
+const kw700size15colTextGrey = TextStyle(
+  fontWeight: FontWeight.w700,
+  fontSize: 15,
+  color: kTextGrey,
+);
+

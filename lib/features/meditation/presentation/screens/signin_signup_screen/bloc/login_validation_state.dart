@@ -10,17 +10,17 @@ abstract class LoginValidationState extends Equatable {
 class LoginValidationInitial extends LoginValidationState {}
 
 class LoginValidState extends LoginValidationState {
-   bool isTickedOrNot;
-   LoginValidState({required this.isTickedOrNot});
+  // final bool isTickedOrNot;
+  // LoginValidState({required this.isTickedOrNot});
 }
 
 class LoginErrorState extends LoginValidationState {
   final String emailErrorMessage;
   final String passwordErrorMessage;
-  final String checkboxErrorMessage;
+ // final String checkboxErrorMessage;
   const LoginErrorState({
     required this.emailErrorMessage,
     required this.passwordErrorMessage,
-    required this.checkboxErrorMessage,
+  //  required this.checkboxErrorMessage,
   });
 }

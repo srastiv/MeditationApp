@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../domain/entities/courses_entity.dart';
+import '../../../../data/models/courses_model.dart';
 import '../../../../domain/usecases/courses_usecase.dart';
 
 part 'courses_event.dart';
