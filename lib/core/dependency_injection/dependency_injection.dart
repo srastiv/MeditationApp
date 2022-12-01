@@ -1,23 +1,23 @@
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
-import 'features/meditation/data/data_sources/local_data_sources/oceanmoon_local_data_sources.dart';
-import 'features/meditation/data/data_sources/local_data_sources/weekdays_local_data_sources.dart';
-import 'features/meditation/data/data_sources/remote_data_sources/courses_remote_data_source.dart';
-import 'features/meditation/data/data_sources/remote_data_sources/what_brings_remote_data_source.dart';
-import 'features/meditation/data/repositories_impl/courses_repository_impl.dart';
-import 'features/meditation/data/repositories_impl/meditation_repository_impl.dart';
-import 'features/meditation/data/repositories_impl/what_brings_you_repository_impl.dart';
-import 'features/meditation/domain/repositories/courses_repository.dart';
-import 'features/meditation/domain/repositories/what_brings_repository.dart';
-import 'features/meditation/domain/repositories/what_brings_you-repository.dart';
-import 'features/meditation/domain/usecases/courses_usecase.dart';
-import 'features/meditation/domain/usecases/what_brings_usecase.dart';
-import 'features/meditation/domain/usecases/what_brings_you_usecase.dart';
-import 'features/meditation/presentation/screens/courses/bloc/courses_bloc.dart';
-import 'features/meditation/presentation/screens/reminders/bloc/weekdays_bloc.dart';
-import 'features/meditation/presentation/screens/sleep/stories/bloc/stories_bloc.dart';
-import 'features/meditation/presentation/screens/whatbrings/what_brings_you_bloc/what_brings_you_bloc.dart';
+import '../../features/meditation/data/data_sources/local_data_sources/oceanmoon_local_data_sources.dart';
+import '../../features/meditation/data/data_sources/local_data_sources/weekdays_local_data_sources.dart';
+import '../../features/meditation/data/data_sources/remote_data_sources/courses_remote_data_source.dart';
+import '../../features/meditation/data/data_sources/remote_data_sources/what_brings_remote_data_source.dart';
+import '../../features/meditation/data/repositories_impl/courses_repository_impl.dart';
+import '../../features/meditation/data/repositories_impl/meditation_repository_impl.dart';
+import '../../features/meditation/data/repositories_impl/what_brings_you_repository_impl.dart';
+import '../../features/meditation/domain/repositories/courses_repository.dart';
+import '../../features/meditation/domain/repositories/what_brings_repository.dart';
+import '../../features/meditation/domain/repositories/what_brings_you_repository.dart';
+import '../../features/meditation/domain/usecases/courses_usecase.dart';
+import '../../features/meditation/domain/usecases/what_brings_usecase.dart';
+import '../../features/meditation/domain/usecases/what_brings_you_usecase.dart';
+import '../../features/meditation/presentation/screens/courses/bloc/courses_bloc.dart';
+import '../../features/meditation/presentation/screens/reminders/bloc/weekdays_bloc.dart';
+import '../../features/meditation/presentation/screens/sleep/stories/bloc/stories_bloc.dart';
+import '../../features/meditation/presentation/screens/whatbrings/what_brings_you_bloc/what_brings_you_bloc.dart';
 
 final GetIt sl = GetIt.instance;
 

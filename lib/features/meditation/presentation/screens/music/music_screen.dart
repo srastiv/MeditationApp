@@ -1,6 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../common_widgets/row_icon_button_widget.dart';
 import '../../constants/colors.dart';
@@ -54,7 +54,8 @@ class _MusicScreenState extends State<MusicScreen> {
                 CommonRowOfIconButtonWidgets(
                   onTap: () {
                     //    context.go("/bottomnav");
-                    context.pop();
+                    AutoRouter.of(context).pop();
+                   // context.pop();
                   },
                   color: MediaQuery.of(context).platformBrightness ==
                           Brightness.dark

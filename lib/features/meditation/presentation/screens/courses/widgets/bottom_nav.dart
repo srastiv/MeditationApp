@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../constants/colors.dart';
+import '../../../routing/auto_router.gr.dart';
 import '../../meditate/meditate_screen.dart';
 import '../../music/music_screen.dart';
 import '../../sleep/rubbish.dart';
@@ -38,7 +39,8 @@ class _CustomBottomNavigationBarWidgetState
         currentindex = index;
       });
     } else {
-      context.push("/music");
+      AutoRouter.of(context).push(const MusicScreenRoute());
+      // context.push("/music");
     }
     // if (index != 4) {
     //   setState(() {

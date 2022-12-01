@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+// ignore: depend_on_referenced_packages
+import 'package:kiwi/kiwi.dart';
 
-import '../../../../../../dependency_injection.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/textstyle.dart';
 import '../bloc/weekdays_bloc.dart';
@@ -22,7 +23,7 @@ class _WeekdayWidgetState extends State<WeekdayWidget> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<WeekdaysBloc>(),
+      create: (context) => KiwiContainer().resolve<WeekdaysBloc>(),
       child: BlocBuilder<WeekdaysBloc, WeekdaysState>(
         builder: (context, state) {
           if (state is WeekdaysInitialState) {

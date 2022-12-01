@@ -10,7 +10,7 @@ abstract class WeekdaysLocalDataSource {
 class WeekdaysLocalDataSourceImpl implements WeekdaysLocalDataSource {
   @override
   Either<Failure, List<WeekdaysEntity>> getWeekdays() {
-    List<WeekdaysEntity> weekdays = [
+    List<WeekdaysEntity> weekdays =  [
       WeekdaysEntity(selectedOrNot: false, weekdays: "SU"),
       WeekdaysEntity(selectedOrNot: false, weekdays: "M"),
       WeekdaysEntity(selectedOrNot: false, weekdays: "T"),

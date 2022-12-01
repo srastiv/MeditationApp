@@ -1,8 +1,9 @@
 import 'package:equatable/equatable.dart';
 
+
 class WeekdaysEntity extends Equatable {
   final String weekdays;
-  bool selectedOrNot;
+   bool selectedOrNot;
 
   WeekdaysEntity({required this.selectedOrNot, required this.weekdays});
 

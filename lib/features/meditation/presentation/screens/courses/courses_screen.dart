@@ -1,14 +1,16 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../../dependency_injection.dart';
+// ignore: depend_on_referenced_packages
+import 'package:kiwi/kiwi.dart';
 import '../../common_widgets/silent_logo_moon.dart';
 import '../../constants/colors.dart';
 import '../../constants/texts.dart';
 import '../../constants/textstyle.dart';
+import '../../routing/auto_router.gr.dart';
 import 'bloc/courses_bloc.dart';
 
 List<SvgPicture> homepageSVGList = [
@@ -26,7 +28,7 @@ class CoursesScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: BlocProvider(
-            create: (context) => sl<CoursesBloc>(),
+            create: (context) => KiwiContainer().resolve<CoursesBloc>(),
             child: BlocBuilder<CoursesBloc, CoursesState>(
               builder: (context, state) {
                 if (state is CoursesInitialState) {
@@ -77,7 +79,9 @@ class CoursesScreen extends StatelessWidget {
                                         ),
                                         ElevatedButton(
                                           onPressed: () {
-                                            context.push("/user");
+                                            //    context.push("/user");
+                                            // AutoRouter.of(context).push(
+                                            //     UserScreenRoute(course: state.coursesList[0]));
                                           },
                                           style: ElevatedButton.styleFrom(
                                             primary: kWhite,
@@ -119,11 +123,13 @@ class CoursesScreen extends StatelessWidget {
                             itemBuilder: ((context, index) {
                               return GestureDetector(
                                 onTap: () {
-                                  var course = state.coursesList[index];
-                                  context.push(
-                                    "/user/$course",
-                                    extra: course,
-                                  );
+                                  //   var course = state.coursesList[index];
+                                  AutoRouter.of(context).push(UserScreenRoute(
+                                      course: state.coursesList[index]));
+                                  // context.push(
+                                  //   "/user/$course",
+                                  //   extra: course,
+                                  // );
                                 },
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,

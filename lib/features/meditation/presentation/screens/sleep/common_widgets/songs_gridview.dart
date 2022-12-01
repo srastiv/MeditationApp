@@ -1,10 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../../../dependency_injection.dart';
+// ignore: depend_on_referenced_packages
+import 'package:kiwi/kiwi.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/textstyle.dart';
+import '../../../routing/auto_router.gr.dart';
 import '../stories/bloc/stories_bloc.dart';
 
 class SongsGridViewWidget extends StatelessWidget {
@@ -18,7 +20,7 @@ class SongsGridViewWidget extends StatelessWidget {
       fit: FlexFit.loose,
       flex: 0,
       child: BlocProvider(
-        create: (context) => sl<StoriesBloc>(),
+        create: (context) =>  KiwiContainer().resolve<StoriesBloc>(),
         child: BlocBuilder<StoriesBloc, StoriesState>(
           builder: (context, state) {
             if (state is StoriesInitialState) {
@@ -48,12 +50,15 @@ class SongsGridViewWidget extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: (() {
-                      var song = state.oceanMoonStories[index].title;
+                   //   var song = state.oceanMoonStories[index].title;
                       // var svg = state.oceanMoonStories[index].picture;
-                      context.push(
-                        "/island/$song",
-                        extra: song,
-                      );
+
+                      AutoRouter.of(context).push(NightIslandScreenRoute(
+                          song: state.oceanMoonStories[index].title));
+                      // context.push(
+                      //   "/island/$song",
+                      //   extra: song,
+                      // );
                     }),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

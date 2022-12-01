@@ -1,11 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../common_widgets/elevated_button_widget.dart';
+import '../../common_widgets/silent_logo_moon.dart';
 import '../../constants/colors.dart';
 import '../../constants/texts.dart';
-import '../../common_widgets/silent_logo_moon.dart';
+import '../../routing/auto_router.gr.dart';
 
 class SignInSignUpScreen extends StatelessWidget {
   const SignInSignUpScreen({Key? key}) : super(key: key);
@@ -47,7 +48,8 @@ class SignInSignUpScreen extends StatelessWidget {
             text: kSignIn,
             color: kPurple,
             onpressed: () {
-              context.go("/signup");
+              AutoRouter.of(context).push(SignUpRoute());
+              // context.router.push(SignUp());
             },
           ),
           FittedBox(
@@ -58,7 +60,7 @@ class SignInSignUpScreen extends StatelessWidget {
                 kLogInText,
                 TextButton(
                   onPressed: () {
-                    context.go("/signin");
+                    AutoRouter.of(context).push(SignInRoute());
                   },
                   child: kLogin,
                 ),

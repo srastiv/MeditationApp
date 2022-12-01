@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meditation/features/meditation/presentation/screens/whatbrings/tiles4.dart';
 import 'package:meditation/features/meditation/presentation/screens/whatbrings/what_brings_you_bloc/what_brings_you_bloc.dart';
 
-import '../../../../../dependency_injection.dart';
+// ignore: depend_on_referenced_packages
+import 'package:kiwi/kiwi.dart' ;
+//import '../../../../../core/dependency_injection/dependency_injection.dart';
 import '../../constants/colors.dart';
 import '../../constants/texts.dart';
 
@@ -26,7 +28,8 @@ class WhatBrings extends StatelessWidget {
             kChooseATopic,
             const SizedBox(height: 30),
             BlocProvider(
-              create: (context) => sl<WhatBringsYouBloc>(),
+              create: (context) =>
+                KiwiContainer().resolve<WhatBringsYouBloc>(),
               child: BlocBuilder<WhatBringsYouBloc, WhatBringsYouState>(
                 builder: (context, state) {
                   if (state is WhatBringsYouInitialState) {

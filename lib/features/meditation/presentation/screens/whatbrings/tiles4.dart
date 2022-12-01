@@ -1,11 +1,12 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../data/data_sources/local_data_sources/meditation_local_data_sources.dart';
 import '../../constants/texts.dart';
 import '../../constants/textstyle.dart';
+import '../../routing/auto_router.gr.dart';
 import 'what_brings_you_bloc/what_brings_you_bloc.dart';
 
 class ContainerOf4ContainersWidget extends StatelessWidget {
@@ -25,7 +26,7 @@ class ContainerOf4ContainersWidget extends StatelessWidget {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    context.go("/reminders");
+                    AutoRouter.of(context).push(const ReminderScreenRoute());
                   },
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,

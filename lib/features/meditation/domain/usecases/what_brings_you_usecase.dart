@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/errors/failures.dart';
 import '../../data/models/what_brings_you_model.dart';
-import '../repositories/what_brings_you-repository.dart';
+import '../repositories/what_brings_you_repository.dart';
 
 class GetWhatBringsYouUsecase {
   final WhatBringsYouRepository repository;

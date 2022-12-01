@@ -1,9 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../common_widgets/elevated_button_widget.dart';
 import '../../constants/colors.dart';
 import '../../constants/texts.dart';
+import '../../routing/auto_router.gr.dart';
 import 'widgets/time_picker.dart';
 import 'widgets/weekday_widget.dart';
 
@@ -53,7 +54,9 @@ class ReminderScreen extends StatelessWidget {
                   text: kSave,
                   color: kPurple,
                   onpressed: () {
-                    context.go("/bottomnav");
+                    AutoRouter.of(context)
+                        .push(const CustomBottomNavigationBarWidgetRoute());
+                    //      context.go("/bottomnav");
                   },
                 ),
                 CommonElevatedButtonWidget(

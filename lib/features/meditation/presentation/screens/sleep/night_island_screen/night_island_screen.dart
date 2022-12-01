@@ -1,12 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../common_widgets/elevated_button_widget.dart';
 import '../../../common_widgets/row_icon_button_widget.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/texts.dart';
 import '../../../constants/textstyle.dart';
+import '../../../routing/auto_router.gr.dart';
 import '../common_widgets/songs_gridview.dart';
 
 class NightIslandScreen extends StatelessWidget {
@@ -44,7 +45,8 @@ class NightIslandScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 12.0, right: 12),
                     child: CommonRowOfIconButtonWidgets(
                       onTap: () {
-                        context.pop();
+                        AutoRouter.of(context).pop();
+                        // context.pop();
                       },
                       color: const Color.fromARGB(99, 3, 22, 76),
                       widget: const Icon(
@@ -67,7 +69,8 @@ class NightIslandScreen extends StatelessWidget {
                   const SizedBox(height: 150),
                   GestureDetector(
                       onTap: () {
-                        context.push("/rubbish");
+                        AutoRouter.of(context).push(const RubbishRoute());
+                        //context.push("/rubbish");
                       },
                       child: Text(
                         song,

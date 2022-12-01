@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:meditation/features/meditation/presentation/constants/colors.dart';
 
 import '../constants/textstyle.dart';
@@ -7,6 +8,7 @@ class CommonTextFormFieldWidget extends StatelessWidget {
   final int? numberOfLetters;
   final Widget? suffixicon;
   final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
   final String text;
 
   final bool obscuretext;
@@ -17,6 +19,7 @@ class CommonTextFormFieldWidget extends StatelessWidget {
     Key? key,
     required this.text,
     this.onchanged,
+    this.inputFormatters,
     this.keyboardType,
     required this.controller,
     this.suffixicon,
@@ -28,6 +31,7 @@ class CommonTextFormFieldWidget extends StatelessWidget {
     return SizedBox(
       height: 63,
       child: TextFormField(
+        inputFormatters: inputFormatters,
         keyboardType: keyboardType,
         controller: controller,
         onChanged: onchanged,

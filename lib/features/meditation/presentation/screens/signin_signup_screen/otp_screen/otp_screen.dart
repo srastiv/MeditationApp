@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, avoid_print
+
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -119,7 +121,7 @@ class _OTPScreenState extends State<OTPScreen> {
                 } catch (error) {
                   FocusScope.of(context).unfocus();
                   ScaffoldMessenger.of(context)
-                      .showSnackBar(SnackBar(content: Text("Invalid OTP")));
+                      .showSnackBar(const SnackBar(content: Text("Invalid OTP")));
                   // _scaffoldKey.currentState!.showSnackBar(
                   //   SnackBar(
                   //     content: Text("Invalid OTP"),
@@ -142,7 +144,7 @@ final defaultPinTheme = PinTheme(
       fontSize: 20, color: kDarkNightGrey, fontWeight: FontWeight.w600),
   decoration: BoxDecoration(
     border: Border.all(
-      color: const Color.fromRGBO(234, 239, 243, 1),
+      color:const  Color.fromARGB(255, 117, 118, 119),
     ),
     borderRadius: BorderRadius.circular(20),
   ),

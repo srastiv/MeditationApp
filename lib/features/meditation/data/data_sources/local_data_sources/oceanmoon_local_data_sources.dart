@@ -11,7 +11,7 @@ abstract class OceanMoonLocalDataSource {
 class OceanMoonLocalDataSourceImpl extends OceanMoonLocalDataSource {
   @override
   Either<Failure, List<OceanMoonEntity>> getOceanMoonList() {
-    List<OceanMoonEntity> OceanMoonEntityList = [
+    List<OceanMoonEntity> oceanMoonEntityList = [
       OceanMoonEntity(
           picture: SvgPicture.asset("assets/vectors/nightIsland.svg"),
           subtitle: "45 MIN • SLEEP MUSIC",
@@ -55,7 +55,7 @@ class OceanMoonLocalDataSourceImpl extends OceanMoonLocalDataSource {
     ];
 
     if (2 == 2) {
-      return Right(OceanMoonEntityList);
+      return Right(oceanMoonEntityList);
     } else {
       return const Left(Failure());
     }

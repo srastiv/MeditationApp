@@ -1,6 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:meditation/features/meditation/presentation/routing/auto_router.gr.dart';
 
 import '../../constants/colors.dart';
 import '../signin_signup_screen/auth/google_sign_in.dart';
@@ -35,7 +36,7 @@ class AuthPage extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       MeditationGoogleAuthService().logOutOfGoogle();
-                      context.go("/");
+                      AutoRouter.of(context).push(SignUpRoute());
                     },
                     child: const Text(
                       "LOG OUT",
@@ -46,7 +47,7 @@ class AuthPage extends StatelessWidget {
                   ),
                   TextButton(
                     onPressed: () {
-                      context.go("/welcome");
+                      AutoRouter.of(context).push(WelcomeScreenRoute());
                     },
                     child: const Text(
                       "CONTINUE",

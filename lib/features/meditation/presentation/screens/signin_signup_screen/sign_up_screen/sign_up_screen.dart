@@ -1,8 +1,10 @@
+// ignore_for_file: avoid_print
+
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../common_widgets/elevated_button_widget.dart';
 import '../../../common_widgets/icon_button_widget.dart';
@@ -10,6 +12,7 @@ import '../../../common_widgets/text_form_field.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/texts.dart';
 import '../../../constants/textstyle.dart';
+import '../../../routing/auto_router.gr.dart';
 import '../auth/bloc/google_sign_in_bloc.dart';
 import '../bloc/login_validation_bloc.dart';
 import 'widgets/check_box.dart';
@@ -65,8 +68,7 @@ class SignUp extends StatelessWidget {
                                     .add(GoogleLogInEvent());
                                 // await MeditationGoogleAuthService()
                                 //     .logInWithGoogle();
-
-                                context.go("/auth");
+                                AutoRouter.of(context).push(const AuthPageRoute());
                               },
                             ),
                           ),
@@ -80,7 +82,7 @@ class SignUp extends StatelessWidget {
                                 color: kBlack,
                               ),
                               onpressed: () {
-                                context.go("/");
+                                AutoRouter.of(context).pop();
                               },
                             ),
                           ),
@@ -100,9 +102,9 @@ class SignUp extends StatelessWidget {
                                 kOrLogInWithEmail,
                                 ElevatedButton(
                                   onPressed: () {
-                                    context.push(
-                                        "/otp/${phoneNoController.text}",
-                                        extra: phoneNoController.text);
+                                    //* context.push(
+                                    //*     "/otp/${phoneNoController.text}",
+                                    //*     extra: phoneNoController.text);
                                   },
                                   style: ElevatedButton.styleFrom(
                                       primary: kPurple, elevation: 0),
@@ -113,6 +115,9 @@ class SignUp extends StatelessWidget {
                             const SizedBox(height: 40),
                             CommonTextFormFieldWidget(
                               keyboardType: TextInputType.number,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
                               obscuretext: false,
                               text: "Phone Number",
                               controller: phoneNoController,
@@ -221,7 +226,7 @@ class SignUp extends StatelessWidget {
                                 LoginValidationState>(
                               builder: (context, state) {
                                 if (state is LoginErrorState) {
-                                  return Text(""
+                                  return const  Text(""
                                       // state.checkboxErrorMessage,
                                       // style: kErrorStyle,
                                       );
@@ -239,7 +244,8 @@ class SignUp extends StatelessWidget {
                         onpressed: () {
                           (state is! LoginValidState)
                               ? null
-                              : context.go("/welcome");
+                              : AutoRouter.of(context)
+                                  .push(WelcomeScreenRoute());
                         },
                       ),
                     ],

@@ -1,13 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../common_widgets/elevated_button_widget.dart';
 import '../../common_widgets/silent_logo_moon.dart';
 import '../../constants/colors.dart';
 import '../../constants/texts.dart';
 import '../../constants/textstyle.dart';
+import '../../routing/auto_router.gr.dart';
 
 class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({Key? key}) : super(key: key);
@@ -42,7 +43,7 @@ class WelcomeScreen extends StatelessWidget {
             text: kGetStartedButtonText,
             color: kWhite,
             onpressed: () {
-              context.go("/whatbrings");
+              AutoRouter.of(context).push(const WhatBringsRoute());
             },
           ),
         ],

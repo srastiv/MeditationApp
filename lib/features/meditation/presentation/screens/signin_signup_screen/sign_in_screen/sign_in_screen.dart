@@ -1,13 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../common_widgets/elevated_button_widget.dart';
 import '../../../common_widgets/icon_button_widget.dart';
 import '../../../common_widgets/text_form_field.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/texts.dart';
+import '../../../routing/auto_router.gr.dart';
 
 class SignIn extends StatelessWidget {
   SignIn({Key? key}) : super(key: key);
@@ -67,7 +68,7 @@ class SignIn extends StatelessWidget {
                       color: kBlack,
                     ),
                     onpressed: () {
-                      context.go("/");
+                      AutoRouter.of(context).pop();
                     },
                   ),
                 ),
@@ -98,7 +99,7 @@ class SignIn extends StatelessWidget {
               text: kLogInButtonText,
               color: kPurple,
               onpressed: () {
-                context.go("/welcome");
+                AutoRouter.of(context).push(WelcomeScreenRoute());
               },
             ),
             const SizedBox(height: 20),
