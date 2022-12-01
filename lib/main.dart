@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: depend_on_referenced_packages
 import 'package:kiwi/kiwi.dart' as kiwi;
 
-import 'core/dependency_injection/di.dart';
+import 'dependency_injection/di.dart';
 import 'features/meditation/presentation/constants/colors.dart';
 import 'features/meditation/presentation/routing/auto_router.gr.dart';
 import 'features/meditation/presentation/screens/courses/bloc/courses_bloc.dart';

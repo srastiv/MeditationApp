@@ -13,7 +13,7 @@ class SleepStoriesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
         elevation: 0,
         backgroundColor: kNightBlue,
         title: kSleepStories,
