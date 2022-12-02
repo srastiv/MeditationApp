@@ -27,12 +27,16 @@ class _RubbishState extends State<Rubbish> {
       body: Center(
         child: ElevatedButton(
           onPressed: () => Fluttertoast.showToast(
-            msg: "msg",
+            msg: "TOAST MESSAGE",
             toastLength: Toast.LENGTH_LONG,
             gravity: ToastGravity.CENTER_LEFT,
             backgroundColor: kGreen,
           ),
-          child: const Text("nothing here"),
+          child: Wrap(
+            children: const [
+              Text("nothing here djshdshdhjhbsjds hdbsd hsbdsfss"),
+            ],
+          ),
         ),
       ),
     );

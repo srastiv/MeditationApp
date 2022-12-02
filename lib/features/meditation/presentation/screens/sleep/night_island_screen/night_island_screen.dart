@@ -13,7 +13,7 @@ import '../common_widgets/songs_gridview.dart';
 class NightIslandScreen extends StatelessWidget {
   const NightIslandScreen({
     Key? key,
-    required this.song,
+    @PathParam() required this.song,
   }) : super(key: key);
   final String song;
   @override
@@ -69,7 +69,7 @@ class NightIslandScreen extends StatelessWidget {
                   const SizedBox(height: 150),
                   GestureDetector(
                       onTap: () {
-                        AutoRouter.of(context).push(const RubbishRoute());
+                        AutoRouter.of(context).push(const RubbishRouter());
                         //context.push("/rubbish");
                       },
                       child: Text(

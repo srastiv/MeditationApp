@@ -40,151 +40,166 @@ class _CustomBottomNavigationBarWidgetState
       });
     } else {
       AutoRouter.of(context).push(const MusicScreenRoute());
-      // context.push("/music");
     }
-    // if (index != 4) {
-    //   setState(() {
-    //     currentindex = index;
-    //   });
-    // } else {
-    //   context.go("/user");
-    // }
-    // if (index != 1) {
-    //   setState(() {
-    //     currentindex = index;
-    //   });
-    // } else {
-    //   context.go("/stories");
-    // }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: const [
-            BoxShadow(
-              blurRadius: 17,
-              spreadRadius: 0,
-              offset: Offset(2, -5),
-              color: Color.fromARGB(20, 84, 87, 92),
-            ),
-          ],
-          color:
-              // Theme.of(context).primaryColor,
-              currentindex == 1 ? kNightBlue : kPureWhite,
-        ),
-        child: BottomNavigationBar(
-          backgroundColor: currentindex == 1 ? kNightBlue : kPureWhite,
-          type: BottomNavigationBarType.fixed,
-          currentIndex: currentindex,
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          unselectedItemColor: kTextGrey,
-          unselectedFontSize: 14,
-          selectedFontSize: 14,
-          selectedItemColor: kPurple,
-          onTap: (index) => _onItemTapped(index),
-          items: [
-            BottomNavigationBarItem(
-              icon: (currentindex == 0)
-                  ? Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                          color: kPurple,
-                          borderRadius: BorderRadius.circular(18)),
-                      child: SvgPicture.asset(
-                        "assets/icons/homeIcon.svg",
-                        color: kPureWhite,
-                      ),
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: SvgPicture.asset(
-                        "assets/icons/homeIcon.svg",
-                        color: kTextGrey,
-                      ),
-                    ),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              icon: (currentindex == 1)
-                  ? Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                          color: kPurple,
-                          borderRadius: BorderRadius.circular(18)),
-                      child: SvgPicture.asset(
-                        "assets/icons/moonIcon.svg",
-                        color: kPureWhite,
-                      ),
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: SvgPicture.asset(
-                        "assets/icons/moonIcon.svg",
-                        color: kTextGrey,
-                      ),
-                    ),
-              label: "Sleep",
-            ),
-            BottomNavigationBarItem(
-              icon: (currentindex == 2)
-                  ? Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                          color: kPurple,
-                          borderRadius: BorderRadius.circular(18)),
-                      child: SvgPicture.asset(
-                        "assets/icons/meditateIcon.svg",
-                        color: kPureWhite,
-                      ),
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: SvgPicture.asset(
-                        "assets/icons/meditateIcon.svg",
-                        color: kTextGrey,
-                      ),
-                    ),
-              label: "Meditate",
-            ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: SvgPicture.asset(
-                  "assets/icons/musicIcon.svg",
-                  color: kTextGrey,
+    return AutoTabsScaffold(
+
+        //? appBarBuilder: (_, tabsRouter)=> AppBar(
+        //?   automaticallyImplyLeading: false,
+        //?   elevation: 0,
+        //?   backgroundColor: kNightBlue,
+        //?   title: kSleepStories,
+        //? ),
+
+        routes: [
+          CoursesRouter(),
+          StoriesRouter(),
+          MeditateRouter(),
+          MusicRouter(),
+          RubbishRouter(),
+        ],
+        bottomNavigationBuilder: (_, tabsRouter) {
+       
+          return
+              //*  Scaffold(
+              //*   bottomNavigationBar:
+              Container(
+            decoration: BoxDecoration(
+              boxShadow: const [
+                BoxShadow(
+                  blurRadius: 17,
+                  spreadRadius: 0,
+                  offset: Offset(2, -5),
+                  color: Color.fromARGB(20, 84, 87, 92),
                 ),
-              ),
-              label: "Music",
+              ],
+              color:
+                  // Theme.of(context).primaryColor,
+                  tabsRouter.activeIndex == 1
+                      // currentindex == 1 ?
+                      ? kNightBlue
+                      : kPureWhite,
             ),
-            BottomNavigationBarItem(
-              icon: (currentindex == 4)
-                  ? Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                          color: kPurple,
-                          borderRadius: BorderRadius.circular(18)),
-                      child: SvgPicture.asset(
-                        "assets/icons/userIcon.svg",
-                        color: kPureWhite,
-                      ),
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.only(bottom: 16.0),
-                      child: SvgPicture.asset(
-                        "assets/icons/userIcon.svg",
-                        color: kTextGrey,
-                      ),
+            child: BottomNavigationBar(
+              backgroundColor:
+                  tabsRouter.activeIndex == 1 ? kNightBlue : kPureWhite,
+              type: BottomNavigationBarType.fixed,
+              currentIndex: tabsRouter.activeIndex,
+              showSelectedLabels: true,
+              showUnselectedLabels: true,
+              unselectedItemColor: kTextGrey,
+              unselectedFontSize: 14,
+              selectedFontSize: 14,
+              selectedItemColor: kPurple,
+              onTap: (index) => tabsRouter.activeIndex == 3
+                  ? AutoRouter.of(context).push(const MusicScreenRoute())
+                  : tabsRouter.setActiveIndex(index),
+              //_onItemTapped(index),
+              items: [
+                BottomNavigationBarItem(
+                  icon: (tabsRouter.activeIndex == 0)
+                      ? Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                              color: kPurple,
+                              borderRadius: BorderRadius.circular(18)),
+                          child: SvgPicture.asset(
+                            "assets/icons/homeIcon.svg",
+                            color: kPureWhite,
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: SvgPicture.asset(
+                            "assets/icons/homeIcon.svg",
+                            color: kTextGrey,
+                          ),
+                        ),
+                  label: "Home",
+                ),
+                BottomNavigationBarItem(
+                  icon: (tabsRouter.activeIndex == 1)
+                      ? Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                              color: kPurple,
+                              borderRadius: BorderRadius.circular(18)),
+                          child: SvgPicture.asset(
+                            "assets/icons/moonIcon.svg",
+                            color: kPureWhite,
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: SvgPicture.asset(
+                            "assets/icons/moonIcon.svg",
+                            color: kTextGrey,
+                          ),
+                        ),
+                  label: "Sleep",
+                ),
+                BottomNavigationBarItem(
+                  icon: (tabsRouter.activeIndex == 2)
+                      ? Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                              color: kPurple,
+                              borderRadius: BorderRadius.circular(18)),
+                          child: SvgPicture.asset(
+                            "assets/icons/meditateIcon.svg",
+                            color: kPureWhite,
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: SvgPicture.asset(
+                            "assets/icons/meditateIcon.svg",
+                            color: kTextGrey,
+                          ),
+                        ),
+                  label: "Meditate",
+                ),
+                BottomNavigationBarItem(
+                  icon: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: SvgPicture.asset(
+                      "assets/icons/musicIcon.svg",
+                      color: kTextGrey,
                     ),
-              label: user!.displayName,
+                  ),
+                  label: "Music",
+                ),
+                BottomNavigationBarItem(
+                  icon: (tabsRouter.activeIndex == 4)
+                      ? Container(
+                          padding: const EdgeInsets.all(12),
+                          decoration: BoxDecoration(
+                              color: kPurple,
+                              borderRadius: BorderRadius.circular(18)),
+                          child: SvgPicture.asset(
+                            "assets/icons/userIcon.svg",
+                            color: kPureWhite,
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.only(bottom: 16.0),
+                          child: SvgPicture.asset(
+                            "assets/icons/userIcon.svg",
+                            color: kTextGrey,
+                          ),
+                        ),
+                  label: user!.displayName,
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-      body: tabs[currentindex],
-    );
+          );
+          //*     ),
+          //* ),
+          //*   body: tabs[currentindex],
+          //*  );
+        });
   }
 }

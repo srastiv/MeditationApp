@@ -17,20 +17,6 @@ class SleepStoriesScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: kNightBlue,
         title: kSleepStories,
-        // leading: Container(
-        //   padding: const EdgeInsets.all(5),
-        //   child: CommonIconButtonWidget(
-        //     icon: const Icon(
-        //       Icons.arrow_back,
-        //       color: kBlack,
-        //     ),
-        //     onpressed: () {
-        //       // context.go("/sleep");
-        //       context.pop();
-        //     },
-        //     color: kGrey,
-        //   ),
-        // ),
       ),
       backgroundColor: kNightBlue,
       body: SingleChildScrollView(

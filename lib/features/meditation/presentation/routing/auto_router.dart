@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/empty_router_widgets.dart';
 import 'package:meditation/features/meditation/presentation/screens/courses/courses_screen.dart';
 import 'package:meditation/features/meditation/presentation/screens/meditate/meditate_screen.dart';
 import 'package:meditation/features/meditation/presentation/screens/morning/happy_morning_screen.dart';
@@ -27,16 +28,85 @@ import '../screens/user/user_screen.dart';
     MaterialRoute(page: WelcomeScreen, path: "/welcome"),
     MaterialRoute(page: WhatBrings, path: "/whatbrings"),
     MaterialRoute(page: ReminderScreen),
-    MaterialRoute(page: CustomBottomNavigationBarWidget),
     MaterialRoute(page: CoursesScreen),
     MaterialRoute(page: UserScreen),
     MaterialRoute(page: HappyMorningScreen),
-    MaterialRoute(page: MeditateScreen),
+    //MaterialRoute(page: MeditateScreen),
     MaterialRoute(page: MusicScreen),
     MaterialRoute(page: SleepOnboarding),
-    MaterialRoute(page: SleepStoriesScreen),
-    MaterialRoute(page: NightIslandScreen),
-    MaterialRoute(page: Rubbish),
+    MaterialRoute(
+      page: CustomBottomNavigationBarWidget,
+      path: "bottomNav",
+      children: [
+        AutoRoute(
+          path: "stories",
+          name: "StoriesRouter",
+          page: EmptyRouterPage,
+          maintainState: true,
+          children: [
+            AutoRoute(
+              path: "",
+              page: SleepStoriesScreen,
+            ),
+            AutoRoute(
+              path: ":song",
+              page: NightIslandScreen,
+            ),
+            AutoRoute(
+              path: "",
+               name: "RubbishRouter",
+              page: Rubbish,
+            ),
+            
+          ],
+        ),
+        // //* 2nd autorouter
+        AutoRoute(
+          path: "meditate",
+          name: "MeditateRouter",
+          page: MeditateScreen,
+        ),
+         AutoRoute(
+          path: "courses",
+          name: "CoursesRouter",
+          page: CoursesScreen,
+        ),
+         AutoRoute(
+          path: "music",
+          name: "MusicRouter",
+          page: MusicScreen,
+        ),
+         AutoRoute(
+           path: "",
+        name: "RubbishRouter",
+          page: Rubbish,
+        ),
+      ],
+    ),
+    // MaterialRoute(
+    //   page: SleepStoriesScreen,
+    //   children: [
+    //     MaterialRoute(
+    //       path: 'nightIsland',
+    //       name: "nightsRouter",
+    //       page: EmptyRouterPage,
+    //       children: [
+    //         MaterialRoute(
+    //           path: ":song",
+    //           name: "nightIslandsRouter",
+    //           page: NightIslandScreen,
+    //         ),
+    //         MaterialRoute(
+    //           path: "",
+    //           name: "rubbishRouter",
+    //           page: Rubbish,
+    //         ),
+    //       ],
+    //     ),
+    //   ],
+    // ),
+    // MaterialRoute(page: NightIslandScreen),
+    // MaterialRoute(page: Rubbish),
   ],
   // replaceInRouteName: 'Page, Route',
 )
