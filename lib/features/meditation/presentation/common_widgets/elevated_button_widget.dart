@@ -25,7 +25,7 @@ class CommonElevatedButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          primary: color,
+          backgroundColor: color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(38),
           ),
@@ -68,7 +68,7 @@ class LoginElevatedButtonWidget extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          primary: color,
+          backgroundColor: color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(38),
           ),

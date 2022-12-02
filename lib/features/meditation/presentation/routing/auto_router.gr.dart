@@ -28,7 +28,7 @@ import '../screens/signin_signup_screen/sign_up_screen/sign_up_screen.dart'
     as _i2;
 import '../screens/signin_signup_screen/signin_signup_screen.dart' as _i1;
 import '../screens/sleep/night_island_screen/night_island_screen.dart' as _i18;
-import '../screens/sleep/rubbish.dart' as _i16;
+import '../screens/sleep/rubbish/rubbish.dart' as _i16;
 import '../screens/sleep/sleep_onboarding.dart' as _i12;
 import '../screens/sleep/stories/sleep_stories.dart' as _i17;
 import '../screens/user/user_screen.dart' as _i9;

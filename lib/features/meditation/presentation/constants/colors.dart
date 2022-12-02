@@ -29,3 +29,5 @@ const kLightNightBlue = Color.fromARGB(255, 43, 49, 102);
 const kDarkestBlue = Color.fromARGB(255, 7, 15, 68);
 const kInactiveSliderColor = Color.fromARGB(255, 71, 85, 126);
 const kNightGreyBlue = Color.fromARGB(255, 88, 104, 148);
+const kLemonGreen = Color.fromARGB(255, 200, 221, 137);
+const kLightSunOrange = Color.fromARGB(255, 236, 184, 161);

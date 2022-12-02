@@ -1,23 +1,24 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route/empty_router_widgets.dart';
-import 'package:meditation/features/meditation/presentation/screens/courses/courses_screen.dart';
-import 'package:meditation/features/meditation/presentation/screens/meditate/meditate_screen.dart';
-import 'package:meditation/features/meditation/presentation/screens/morning/happy_morning_screen.dart';
-import 'package:meditation/features/meditation/presentation/screens/music/music_screen.dart';
-import 'package:meditation/features/meditation/presentation/screens/reminders/reminder_screen.dart';
-import 'package:meditation/features/meditation/presentation/screens/sleep/night_island_screen/night_island_screen.dart';
-import 'package:meditation/features/meditation/presentation/screens/sleep/sleep_onboarding.dart';
-import 'package:meditation/features/meditation/presentation/screens/sleep/stories/sleep_stories.dart';
-import 'package:meditation/features/meditation/presentation/screens/welcome/auth_page.dart';
-import 'package:meditation/features/meditation/presentation/screens/welcome/welcome.dart';
-import 'package:meditation/features/meditation/presentation/screens/whatbrings/what_brings_screen.dart';
+import 'package:meditation/features/meditation/presentation/screens/sleep/rubbish/rubbish.dart';
 
+import '../screens/courses/courses_screen.dart';
 import '../screens/courses/widgets/bottom_nav.dart';
+import '../screens/meditate/meditate_screen.dart';
+import '../screens/morning/happy_morning_screen.dart';
+import '../screens/music/music_screen.dart';
+import '../screens/reminders/reminder_screen.dart';
 import '../screens/signin_signup_screen/sign_in_screen/sign_in_screen.dart';
 import '../screens/signin_signup_screen/sign_up_screen/sign_up_screen.dart';
 import '../screens/signin_signup_screen/signin_signup_screen.dart';
-import '../screens/sleep/rubbish.dart';
+import '../screens/sleep/night_island_screen/night_island_screen.dart';
+
+import '../screens/sleep/sleep_onboarding.dart';
+import '../screens/sleep/stories/sleep_stories.dart';
 import '../screens/user/user_screen.dart';
+import '../screens/welcome/auth_page.dart';
+import '../screens/welcome/welcome.dart';
+import '../screens/whatbrings/what_brings_screen.dart';
 
 @MaterialAutoRouter(
   routes: [
@@ -83,30 +84,7 @@ import '../screens/user/user_screen.dart';
         ),
       ],
     ),
-    // MaterialRoute(
-    //   page: SleepStoriesScreen,
-    //   children: [
-    //     MaterialRoute(
-    //       path: 'nightIsland',
-    //       name: "nightsRouter",
-    //       page: EmptyRouterPage,
-    //       children: [
-    //         MaterialRoute(
-    //           path: ":song",
-    //           name: "nightIslandsRouter",
-    //           page: NightIslandScreen,
-    //         ),
-    //         MaterialRoute(
-    //           path: "",
-    //           name: "rubbishRouter",
-    //           page: Rubbish,
-    //         ),
-    //       ],
-    //     ),
-    //   ],
-    // ),
-    // MaterialRoute(page: NightIslandScreen),
-    // MaterialRoute(page: Rubbish),
+    
   ],
   // replaceInRouteName: 'Page, Route',
 )

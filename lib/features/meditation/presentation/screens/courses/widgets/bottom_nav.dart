@@ -2,12 +2,12 @@ import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:meditation/features/meditation/presentation/screens/sleep/rubbish/rubbish.dart';
 
 import '../../../constants/colors.dart';
 import '../../../routing/auto_router.gr.dart';
 import '../../meditate/meditate_screen.dart';
 import '../../music/music_screen.dart';
-import '../../sleep/rubbish.dart';
 import '../../sleep/stories/sleep_stories.dart';
 import '../courses_screen.dart';
 
@@ -56,10 +56,10 @@ class _CustomBottomNavigationBarWidgetState
 
         routes: [
           CoursesRouter(),
-          StoriesRouter(),
-          MeditateRouter(),
-          MusicRouter(),
-          RubbishRouter(),
+          const StoriesRouter(),
+          const MeditateRouter(),
+          const MusicRouter(),
+          const RubbishRouter(),
         ],
         bottomNavigationBuilder: (_, tabsRouter) {
        

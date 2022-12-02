@@ -107,7 +107,7 @@ class SignUp extends StatelessWidget {
                                     //*     extra: phoneNoController.text);
                                   },
                                   style: ElevatedButton.styleFrom(
-                                      primary: kPurple, elevation: 0),
+                                      backgroundColor: kPurple, elevation: 0),
                                   child: const Text("Send OTP"),
                                 ),
                               ],

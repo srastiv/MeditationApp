@@ -84,7 +84,7 @@ class CoursesScreen extends StatelessWidget {
                                             //     UserScreenRoute(course: state.coursesList[0]));
                                           },
                                           style: ElevatedButton.styleFrom(
-                                            primary: kWhite,
+                                            backgroundColor: kWhite,
                                             elevation: 0,
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
